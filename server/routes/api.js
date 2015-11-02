@@ -12,7 +12,9 @@ router.get('/packing_events', function(req, res, next) {
 
 router.get('/packing_events/:id', function(req, res, next) {
   PackingEvent.find({_id: req.params.id},function(err, events) {
-    res.json(events)
+    var event = {}
+    if (events) {event = events[0]}
+    res.json(event)
   })
 });
 
@@ -24,7 +26,7 @@ router.post('/packing_events/', function(req, res, next) {
 
 router.delete('/packing_events/', function(req, res, next) {
   PackingEvent.remove(function(err, thing) {
-    res.json(thing)
+    res.json('success')
   })
 });
 
